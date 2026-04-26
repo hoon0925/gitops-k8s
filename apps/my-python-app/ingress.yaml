@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-python-app
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - my-python-app.192.168.56.200.nip.io
+    secretName: my-python-app-tls
+  rules:
+  - host: my-python-app.192.168.56.200.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-python-app
+            port:
+              number: 80
