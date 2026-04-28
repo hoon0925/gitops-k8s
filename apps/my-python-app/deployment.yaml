@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ghcr.io/hoon0925/my-python-app:610a452
+        image: ghcr.io/hoon0925/my-python-app:4500691
         ports:
         - containerPort: 8080
         env:
