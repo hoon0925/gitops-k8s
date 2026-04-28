@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ghcr.io/hoon0925/my-python-app:ff1dc72
+        image: ghcr.io/hoon0925/my-python-app:610a452
         ports:
         - containerPort: 8080
         livenessProbe:
