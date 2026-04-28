@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-python-app-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-python-app-consumer
+  template:
+    metadata:
+      labels:
+        app: my-python-app-consumer
+    spec:
+      containers:
+      - name: consumer
+        image: ghcr.io/hoon0925/my-python-app:latest
+        command: ["python", "consumer.py"]
+        env:
+        - name: RABBIT_HOST
+          value: rabbitmq.rabbitmq.svc.cluster.local
+        - name: RABBIT_USER
+          value: admin
+        - name: RABBIT_PASSWORD
+          value: rabbit-password-1234
+        - name: RABBIT_QUEUE
+          value: tasks
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
